@@ -4,328 +4,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alihuseynovich</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;900&display=swap" rel="stylesheet">
-    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* Tünd qara-bənövşəyi gradient fon */
         body {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(180deg, #e0e0e0 0%, #ffffff 100%);
+            background: linear-gradient(135deg, #0d0714 0%, #180a29 100%);
+            font-family: 'Inter', sans-serif;
         }
 
-        /* Ana Şüşə Xana */
-        .box {
-            width: 300px;
-            height: 315px; 
-            background: rgba(255, 255, 255, 0.08); 
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 20px; 
-            box-shadow: 0 15px 45px 0 rgba(0, 0, 0, 0.15);
-            padding: 20px 15px 15px 15px; 
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: stretch;
-            overflow: hidden;
-            position: relative;
+        /* Sabit logo - toxunulduqda və ya kliklədikdə böyüyüb işıqlanan nəfis effekti */
+        .static-logo {
+            transition: transform 0.2s ease, filter 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* Başlıq hissəsi */
-        .brand-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px; 
+        /* Desktop hover & Mobile active/tap effekti */
+        .static-logo:hover, .static-logo:active {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.8));
         }
 
-        .brand-text {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            font-size: 12px;
-            color: #1a2a4a;
-            letter-spacing: 0.5px;
-            line-height: 1;
+        /* Sosial iconlar üçün kechid və glow effekti */
+        .social-icon-link {
+            transition: transform 0.25s ease, filter 0.25s ease, opacity 0.25s ease;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .brand-icon {
-            width: 14px;
-            height: 14px;
-            object-fit: contain;
-            filter: invert(13%) sepia(21%) saturate(3019%) hue-rotate(198deg) brightness(93%) contrast(97%);
-        }
-
-        /* Profil bölməsi */
-        .profile-section {
-            display: flex;
-            align-items: center; 
-            gap: 12px;           
-            margin-bottom: 20px; 
-        }
-
-        .profile-img {
-            width: 55px;         
-            height: 55px;
-            border-radius: 12px; 
-            object-fit: cover;
-            border: 1px solid rgba(255, 255, 255, 0.4); 
-        }
-
-        .profile-info {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;            
-        }
-
-        .profile-name {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;    
-            font-size: 14px;
-            color: #1a2a4a;
-            line-height: 1.2;
-        }
-
-        .profile-email {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 400;    
-            font-size: 11px;     
-            color: #4a5568;      
-            line-height: 1.2;
-        }
-
-        /* Konteynerlərin ümumi animasiya keçid tənzimləmələri */
-        .menu-container, .social-container {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            transition: opacity 0.4s ease, transform 0.4s ease;
-            width: 100%;
-        }
-
-        /* Aktiv olmayan hissəni gizlətmək üçün */
-        .hidden {
-            display: none !important;
-            opacity: 0;
-            transform: scale(0.9);
-        }
-
-        /* Uzunsov şüşə xanalar */
-        .mini-box {
-            width: 100%;            
-            height: 36px;          
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .mini-box span {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-            font-size: 11px; 
-            color: #1a2a4a;
-            letter-spacing: 0.3px;
-        }
-
-        .mini-box:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.6);
-            transform: translateY(-1px); 
-        }
-
-        /* SOSİAL ŞƏBƏKƏ KONTEYNERİ */
-        .social-container {
-            align-items: center;
-            justify-content: center;
-            gap: 20px; 
-            padding-top: 10px; 
-        }
-
-        .social-icons-row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px; 
-        }
-
-        .social-link {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 36px;
-            height: 36px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 50%; 
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-        }
-
-        .social-link img {
-            width: 18px;
-            height: 18px;
-            object-fit: contain;
-            filter: invert(13%) sepia(21%) saturate(3019%) hue-rotate(198deg) brightness(93%) contrast(97%);
-            transition: transform 0.3s ease;
-        }
-
-        .social-link:hover {
-            background: rgba(255, 255, 255, 0.18);
-            border-color: rgba(255, 255, 255, 0.7);
-            transform: translateY(-3px) scale(1.08); 
-        }
-
-        /* GERİ QAYITMAQ (HOME) DÜYMƏSİ */
-        .back-button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 5px;
-        }
-
-        .back-button img {
-            width: 24px;
-            height: 24px;
-            object-fit: contain;
-            filter: invert(13%) sepia(21%) saturate(3019%) hue-rotate(198deg) brightness(93%) contrast(97%);
-            opacity: 0.7;
-            transition: all 0.3s ease;
-        }
-
-        .back-button:hover {
-            transform: scale(1.15); 
-        }
-
-        .back-button:hover img {
-            opacity: 1;
-        }
-
-        /* Ən altdakı imza yazısı */
-        .footer-signature {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            font-size: 8px; 
-            color: #1a2a4a;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-align: center;
-            opacity: 0.55; 
-            margin-top: auto; 
+        .social-icon-link:hover, .social-icon-link:active {
+            transform: translateY(-3px) scale(1.15);
+            filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.9));
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col justify-between items-center p-6 m-0 overflow-x-hidden relative select-none">
 
-    <div class="box">
-        <div class="brand-header">
-            <span class="brand-text">Alihuseynovich</span>
-            <img src="https://img.icons8.com/?size=100&id=2yC9SZKcXDdX&format=png&color=000000" alt="icon" class="brand-icon">
-        </div>
+    <!-- Arxa fon ambient neon bənövşəyi işıq effekti -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-purple-600/15 rounded-full blur-[150px] pointer-events-none"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none"></div>
 
-        <div class="profile-section">
-            <img src="image.jpg" alt="Profil şəkli" class="profile-img">
+    <!-- Yuxarı boşluq (mərkəzləşdirmə üçün) -->
+    <div></div>
+
+    <!-- Mərkəzdə tam sabit Logo -->
+    <main class="flex items-center justify-center my-auto z-10 relative">
+        <img 
+            src="logo.png" 
+            alt="Logo" 
+            class="static-logo max-w-[75vw] max-h-[55vh] sm:max-w-[55vw] md:max-w-[40vw] lg:max-w-[28vw] h-auto object-contain cursor-pointer relative z-10"
+            onerror="this.onerror=null; this.insertAdjacentHTML('afterend', '<p class=\'text-purple-300/60 text-xs font-mono tracking-widest uppercase text-center select-none\'>logo.png faylı tapılmadı</p>'); this.remove();"
+        >
+    </main>
+
+    <!-- Alt Hissə: Sosial Media İkonları və Muəllif Hüququ Yazısı -->
+    <footer class="flex flex-col items-center justify-center gap-5 z-10 relative pb-2 w-full">
+        
+        <!-- Ağ rəngli SVG Sosial Media İkonları -->
+        <div class="flex items-center justify-center gap-4 sm:gap-6 flex-wrap">
             
-            <div class="profile-info">
-                <span class="profile-name">Saleh Azimov</span>
-                <span class="profile-email">alihuseynovich@gmail.com</span>
-            </div>
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/alihuseynovich" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-icon-link text-white opacity-85 hover:opacity-100 p-1">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/alihuseynovich" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon-link text-white opacity-85 hover:opacity-100 p-1">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://az.linkedin.com/in/alihuseynovich" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon-link text-white opacity-85 hover:opacity-100 p-1">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.762-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+            </a>
+
+            <!-- X (Twitter) -->
+            <a href="https://x.com/alihuseynovich" target="_blank" rel="noopener noreferrer" aria-label="X" class="social-icon-link text-white opacity-85 hover:opacity-100 p-1">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+            </a>
+
+            <!-- YouTube -->
+            <a href="https://www.youtube.com/@alihuseynovich" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="social-icon-link text-white opacity-85 hover:opacity-100 p-1">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+            </a>
+
+            <!-- Pinterest -->
+            <a href="https://www.pinterest.com/alihuseynovich" target="_blank" rel="noopener noreferrer" aria-label="Pinterest" class="social-icon-link text-white opacity-85 hover:opacity-100 p-1">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C24.002 5.367 18.624 0 12.017 0z"/>
+                </svg>
+            </a>
+
+            <!-- GitHub -->
+            <a href="https://github.com/alihuseynovich" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon-link text-white opacity-85 hover:opacity-100 p-1">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+            </a>
+
         </div>
 
-        <div class="menu-container" id="mainMenu">
-            <div class="mini-box" onclick="showSection('socialMenu')">
-                <span>social profile</span>
-            </div>
-            <div class="mini-box" onclick="location.href='old.html'">
-                <span>old version</span>
-            </div>
-            <div class="mini-box" onclick="window.open('https://alihuseynovich.github.io/giftframeaz/', '_blank')">
-                <span>my shop</span>
-            </div>
-        </div>
+        <!-- Muəllif Hüququ Yazısı -->
+        <p class="text-purple-200/50 text-[11px] font-normal tracking-wide text-center select-none">
+            Alihuseynovich official html code
+        </p>
 
-        <div class="social-container hidden" id="socialMenu">
-            <div class="social-icons-row">
-                <a href="https://www.facebook.com/alihuseynovich" target="_blank" class="social-link">
-                    <img src="https://img.icons8.com/?size=100&id=6JVVYaPk4wp2&format=png&color=000000" alt="Facebook">
-                </a>
-                <a href="https://www.instagram.com/alihuseynovich" target="_blank" class="social-link">
-                    <img src="https://img.icons8.com/?size=100&id=ZOFC5nSr215Y&format=png&color=000000" alt="Instagram">
-                </a>
-                <a href="https://az.linkedin.com/in/alihuseynovich" target="_blank" class="social-link">
-                    <img src="https://img.icons8.com/?size=100&id=uzhJQ5CyNoaH&format=png&color=000000" alt="LinkedIn">
-                </a>
-                <a href="https://www.youtube.com/@alihuseynovich" target="_blank" class="social-link">
-                    <img src="https://img.icons8.com/?size=100&id=NgVx6SS0Wbjb&format=png&color=000000" alt="YouTube">
-                </a>
-                <a href="https://x.com/alihuseynovich" target="_blank" class="social-link">
-                    <img src="https://img.icons8.com/?size=100&id=zWrz2bjEiP4D&format=png&color=000000" alt="X">
-                </a>
-            </div>
-
-            <div class="back-button" onclick="showMainMenu()">
-                <img src="https://img.icons8.com/?size=100&id=DAo1YDH48w1q&format=png&color=000000" alt="Geri Dön">
-            </div>
-        </div>
-
-        <div class="footer-signature">©2025-2026</div>
-    </div>
-
-    <script>
-        const mainMenu = document.getElementById('mainMenu');
-        const socialMenu = document.getElementById('socialMenu');
-
-        // Bölmələri açan funksiya
-        function showSection(sectionId) {
-            mainMenu.style.opacity = '0';
-            mainMenu.style.transform = 'scale(0.9)';
-            
-            setTimeout(() => {
-                mainMenu.classList.add('hidden');
-                
-                const targetSection = document.getElementById(sectionId);
-                targetSection.classList.remove('hidden');
-                
-                setTimeout(() => {
-                    targetSection.style.opacity = '1';
-                    targetSection.style.transform = 'scale(1)';
-                }, 50);
-            }, 300);
-        }
-
-        // Əsas menyuya qayıdan funksiya
-        function showMainMenu() {
-            socialMenu.style.opacity = '0';
-            socialMenu.style.transform = 'scale(0.9)';
-            
-            setTimeout(() => {
-                socialMenu.classList.add('hidden');
-                mainMenu.classList.remove('hidden');
-                
-                setTimeout(() => {
-                    mainMenu.style.opacity = '1';
-                    mainMenu.style.transform = 'scale(1)';
-                }, 50);
-            }, 300);
-        }
-    </script>
+    </footer>
 
 </body>
 </html>
